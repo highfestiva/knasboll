@@ -55,13 +55,15 @@ def main():
                 invoice_total = float(invoice_total) + tax_total
                 invoice_total_s = ('%.2f'%invoice_total).replace('.',',')
                 invoice_number = invoice.find('ns:invoice_number', ns).text
+                allocs = []
                 for invoice_item in invoice.findall('ns:invoice_item', ns):
                     allocation = invoice_item.find('ns:allocation_code_name', ns).text
-                    break
-                if allocation not in allocation_lookup:
-                    print('FATAL: no such allocation %s in allocation.cfg' % allocation)
-                    return
-                allocation_code = allocation_lookup[allocation]
+                    if allocation not in allocation_lookup:
+                        print('FATAL: no such allocation %s in allocation.cfg' % allocation)
+                        return
+                    allocation_code = allocation_lookup[allocation]
+                    allocs += [(allocation_code,allocation)]
+                allocation_code, allocation = sorted(allocs)[0]
                 table += [[allocation, invoice_number, invoice_date, payment_date, customer_id, tax_total, tax_total_s, invoice_total, invoice_total_s, allocation_code]]
 
     add_col(table, 'invoice_date', 'year', lambda s: s.split('-')[0])
@@ -87,3 +89,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    input('Pressers enter!!!')
