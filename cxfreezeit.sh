@@ -7,4 +7,4 @@ cd knasboll_win64/
 mv knasboll.7z ..
 cd ..
 rm -Rf knasboll_win64
-echo 'Done!'
+echo 'Done! Resulting 7z in parent directory.'

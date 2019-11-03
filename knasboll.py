@@ -83,8 +83,9 @@ def main():
     wf.close()
 
     # finish with a nice message
-    total = sum(row[columns.index('invoice_total')] for row in table)
-    print('Dala, your bester agent havs convertidid the %i invoice thingies for totals %.2f evro and writing it to %s!' % (len(table), total, options.output_file))
+    gross_total = sum(row[columns.index('invoice_total')] for row in table)
+    net_total = gross_total - sum(row[columns.index('tax_total')] for row in table)
+    print('Dala, your bester agent havs convertidid the %i invoice thingies for gross %.2f evro/net %.2f evrossar and writing it to %s!' % (len(table), gross_total, net_total, options.output_file))
 
 
 if __name__ == '__main__':
