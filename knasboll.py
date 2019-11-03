@@ -23,7 +23,7 @@ def add_col(table, inp_col, new_col, func):
 
 
 def main():
-    print('knasboll v0.4')
+    print('knasboll v0.5')
     parser = argparse.ArgumentParser()
     parser.add_argument('-i', '--input-wildcard', default='*.xml', help='invoice XML files to process')
     parser.add_argument('-o', '--output-file', default='dalas-invoice-import.csv', help='output Excel file for import into book-keeping software')
